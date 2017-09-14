@@ -1,0 +1,30 @@
+// colors
+$mainColor: blue;
+$lightColor: lighten(blue, 20%);
+$accentColor: gold;
+$accentDark: darken($accentColor, 5%);
+
+// shadows
+$basicBoxShadow: 0px 3px 5px #bbb;
+$basicTextShadow: 1px 1px 2px rgba(150, 150, 150, 1);
+
+@mixin button($fontColor, $bgColor) {
+  $fontDark: darken($fontColor, 5%);
+  $bgDark: darken($bgColor, 5%);
+  $bgDarker: darken($bgColor, 10%);
+
+  background-color: $bgColor;
+  border: 1px solid $bgDarker;
+  color: $fontColor;
+  cursor: pointer;
+  font-weight: bold;
+  outline-color: $bgDark;
+  padding: 5px;
+  text-shadow: $basicTextShadow;
+
+  &:active {
+    background-color: $bgDark;
+    color: $fontDark;
+  }
+}
+
