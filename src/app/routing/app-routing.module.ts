@@ -3,8 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 // components for routing
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
+import { MainComponent } from '../pages/main/main.component';
 
 const appRoutes: Routes = [
+  { path: 'main', component: MainComponent },
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 
