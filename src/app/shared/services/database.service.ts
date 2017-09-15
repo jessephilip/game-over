@@ -7,7 +7,7 @@ export class DatabaseService {
   constructor (private db: AngularFireDatabase) {}
 
   /**
-   * Public method to return the entire lift firebase database.
+   * Public method to return the entire game-over firebase database.
    *
    * @returns {FirebaseListObservable<any>}
    * @memberof DatabaseService
