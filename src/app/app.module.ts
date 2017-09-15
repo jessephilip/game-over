@@ -10,6 +10,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthenticationService } from './shared/services/authentication.service';
 import { DatabaseService } from './shared/services/database.service';
 import { ModalService } from 'app/shared/services/modal.service';
+import { StorageService } from 'app/shared/services/storage.service';
 
 import { AppRoutingModule } from './routing/app-routing.module';
 import { environment } from '../environments/environment';
@@ -36,7 +37,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   providers: [
     AuthenticationService,
     DatabaseService,
-    ModalService
+    ModalService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -10,7 +10,7 @@ export const environment = {
     authDomain: 'game-over-2450b.firebaseapp.com',
     databaseURL: 'https://game-over-2450b.firebaseio.com',
     projectId: 'game-over-2450b',
-    storageBucket: '',
+    storageBucket: 'gs://game-over-2450b.appspot.com/',
     messagingSenderId: '169548507332'
   }
 };
