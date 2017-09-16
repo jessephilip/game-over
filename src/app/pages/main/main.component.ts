@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-import { AuthenticationService } from '../../shared/services/authentication.service';
-import { DatabaseService } from '../../shared/services/database.service';
-import { ModalService } from '../../shared/services/modal.service';
-import { StorageService } from 'app/shared/services/storage.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { StorageService } from '../../shared/services/storage.service';
 
 @Component({
   selector: 'app-main',
@@ -12,17 +8,28 @@ import { StorageService } from 'app/shared/services/storage.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(
-    private db: DatabaseService,
-    private auth: AuthenticationService,
-    private modalService: ModalService,
-    private storageService: StorageService) {
-    this.db.getDatabase().subscribe(results => console.log('db: ', results));
-    this.auth.getUser().subscribe(user => console.log('user: ', user));
-    console.log(this.storageService.storageTest());
+  @ViewChild('input') input: ElementRef;
+  @ViewChild('image') image: ElementRef;
+
+  private showImage (file: File) {
+    const reader = new FileReader();
+    reader.onload = () => this.image.nativeElement.src = reader.result;
+    reader.readAsDataURL(file);
   }
 
-  ngOnInit() {
+  private fileChanged (event) {
+    const file = event.target.files[0];
+    this.showImage(file);
+    this.uploadImage(file);
   }
+
+  public uploadImage (file: File) {
+    const imageRef = this.storageService.storage.child(file.name);
+    imageRef.put(file);
+  }
+
+  constructor(private storageService: StorageService) {}
+
+  ngOnInit() {}
 
 }
