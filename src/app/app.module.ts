@@ -18,12 +18,14 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { BrandHeaderComponent } from './components/brand-header/brand-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    MainComponent
+    MainComponent,
+    BrandHeaderComponent
   ],
   imports: [
     BrowserModule,
