@@ -1,0 +1,16 @@
+@import '../../../variables.scss';
+
+.hide {
+  display: none;
+}
+
+button {
+  @include button(white, $accentColor);
+  box-shadow: $basicBoxShadow;
+  margin: 5px;
+  transition: all 0.1s;
+
+  &:hover, &:focus {
+    transform: scale(1.05);
+  }
+}

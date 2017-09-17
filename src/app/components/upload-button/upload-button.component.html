@@ -1,0 +1,22 @@
+<input
+  #input
+  type="file"
+  [accept]="acceptsArray"
+  [ngClass]="{ 'hide' : !showDefault }"
+  (change)="fileChanged($event)"
+/>
+
+<div
+  [ngClass]="{ 'hide' : showDefault }">
+  <button
+    (click)="buttonClicked(input)">
+    {{ buttonText || 'Upload File' }}
+  </button>
+</div>
+
+
+<img
+  #image
+  src="#"
+  alt=""
+/>
