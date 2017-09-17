@@ -1,12 +1,25 @@
 // TODO: Set up functionality for multiple files.
-// TODO: Set up default functionality that simply shows the basic file upload dialog.
+
+/**
+ * Creates a custom file upload button
+ *
+ *  @param acceptsArray: string[]
+ *    @default []
+ *    Will only allow the user to upload files matching the provided extension
+ *    or extensions in the array. An empty array allows all extensions.
+ *  @param showDefault: boolean
+ *    @default false
+ *    When true, will display as the browsers default file upload button.
+ */
 
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
-  ViewChild
+  Output,
+  ViewChild,
 } from '@angular/core';
 import { StorageService } from '../../shared/services/storage.service';
 
@@ -19,24 +32,23 @@ export class UploadButtonComponent implements OnInit {
 
   @Input('showDefault') showDefault = false;
   @Input('acceptsArray') acceptsArray: string[] = [];
+  @Output('urlEmitter') urlEmitter: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('input') input: ElementRef;
-  @ViewChild('image') image: ElementRef;
 
-  private showImage (file: File) {
-    const reader = new FileReader();
-    reader.onload = () => this.image.nativeElement.src = reader.result;
-    reader.readAsDataURL(file);
-  }
+  constructor(private storageService: StorageService) {}
+
+  ngOnInit() {}
 
   private fileChanged (event) {
     const file = event.target.files[0];
-    this.showImage(file);
     this.uploadFile(file);
   }
 
   private uploadFile (file: File) {
-    const fileRef = this.storageService.storage.child(file.name);
-    fileRef.put(file);
+    this.storageService.uploadFile(file)
+      .then(result => {
+        this.urlEmitter.emit(result.downloadURL);
+      });
   }
 
   /**
@@ -50,9 +62,5 @@ export class UploadButtonComponent implements OnInit {
     if (this.showDefault) { return false; };
     fileInput.click();
   }
-
-  constructor(private storageService: StorageService) {}
-
-  ngOnInit() {}
 
 }

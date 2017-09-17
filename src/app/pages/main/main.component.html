@@ -3,6 +3,13 @@
   main works!
 </h1>
 <app-upload-button
+  (urlEmitter)="urlListener($event)"
   [acceptsArray]="['.jpg', '.jpeg', '.png']"
   [showDefault]="false">
 </app-upload-button>
+
+<img
+  #image
+  src="#"
+  alt=""
+/>
