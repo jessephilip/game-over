@@ -1,8 +1,11 @@
 // colors
 $mainColor: blue;
 $lightColor: lighten(blue, 20%);
-$accentColor: gold;
+$accentColor: #22A7F0;
 $accentDark: darken($accentColor, 5%);
+
+$successColor: #26A65B;
+$failColor: #C3272B;
 
 // shadows
 $basicBoxShadow: 0px 3px 5px #bbb;
