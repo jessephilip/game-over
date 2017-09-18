@@ -1,0 +1,40 @@
+@import '../../../variables.scss';
+
+header {
+  box-shadow: $basicBoxShadow;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.5s linear;
+
+  aside, section {
+    align-items: center;
+    display: flex;
+  }
+
+  &.logged-in {
+    background-color: $mainColor;
+    color: white;
+  }
+
+  .brand-section, .menu {
+    padding: 10px;
+
+    .brand-logo {
+      margin-left: 10px;
+    }
+  }
+
+  .fa {
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  span.login, span.logout {
+    cursor: pointer;
+  }
+}

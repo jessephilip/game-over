@@ -1,0 +1,23 @@
+<header [ngClass]="{'logged-in': loggedIn}">
+  <aside class="brand-section">
+    <span>
+      <i class="fa fa-arrow-up fa-2x"></i>
+    </span>
+    <span>
+      <span class="brand-logo">{{ title }}</span>
+    </span>
+  </aside>
+  <section>
+    {{ welcomeMessage }}
+  </section>
+  <aside>
+    <span
+      [class]="loggedIn ? 'login' : 'logout'"
+      (click)="loggedIn ? logout() : googleLogin()">
+      <p>{{ loggedIn ? 'Logout' : 'Login' }}</p>
+    </span>
+    <span>
+      <i class="menu fa fa-bars fa-2x"></i>
+    </span>
+  </aside>
+</header>
