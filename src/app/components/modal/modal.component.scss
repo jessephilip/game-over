@@ -1,0 +1,25 @@
+@import '../../../variables.scss';
+
+div.modal {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+
+  &.veil {
+    background-color: rgba(0,0,0,0.8);
+  }
+}
+
+main.modal {
+  background-color: white;
+  box-shadow: $basicBoxShadow;
+  color: black;
+  z-index: 1;
+
+  &.basic {
+    width: 50%;
+    height: 50%;
+  }
+}

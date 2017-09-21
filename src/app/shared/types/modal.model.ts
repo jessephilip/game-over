@@ -4,26 +4,15 @@ export class Modal {
     public get id (): number { return this._id; }
     public set id (value: number) { this._id = value; }
 
-    private _type: string;
-    public get type (): string { return this._type; }
-    public set type (value: string) { this._type = value; }
+    private _properties: any;
+    public get properties (): any { return this._properties; }
+    public set properties (value: any) { this._properties = value; }
 
-    private _closeOnVeilClick: boolean;
-    public get closeOnVeilClick (): boolean { return this._closeOnVeilClick; }
-    public set closeOnVeilClick (value: boolean) { this._closeOnVeilClick = value; }
-
-    private _properties: {};
-    public get properties (): {} { return this._properties; }
-    public set properties (value: {}) { this._properties = value; }
-
-    constructor (type?, closeOnVeilClick?, properties?) {
+    constructor (properties?: any) {
       this._id = this.randomNumber();
-      this._type = type || 'basic';
-      this._closeOnVeilClick = closeOnVeilClick || true;
       this._properties = properties || {};
     }
 
-    private randomNumber (): number {
-      return Math.floor(Math.random() * 100000) + Date.now();
-    }
+    private randomNumber = (): number => Math.floor(Math.random() * 100000) + Date.now();
+    public hasProperties = (): boolean => Object.keys(this.properties).length > 0;
   }

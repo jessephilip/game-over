@@ -1,0 +1,24 @@
+<div
+  class="modal"
+  [ngClass]="{ 'veil' : modal.properties.showVeil }"
+  (click)="modal.properties.veilClick(modal)">
+  <main
+    [class]="displayClasses()"
+    appStopPropagation>
+    <header>
+      <h1>{{ modal.properties.title }}</h1>
+    </header>
+    <section
+      class="body">
+      <p>{{ modal.properties.text }}</p>
+    </section>
+    <footer>
+      <button
+        *ngIf="modal.properties.showCancel"
+        class="btn cancel"
+        (click)="cancel(modal)">
+        Cancel
+      </button>
+    </footer>
+  </main>
+</div>
