@@ -29,6 +29,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 // component components
 import { BrandHeaderComponent } from './components/brand-header/brand-header.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
     NotFoundComponent,
     MainComponent,
     BrandHeaderComponent,
-    UploadButtonComponent
+    UploadButtonComponent,
+    ModalComponent,
+    StopPropagationDirective
   ],
   imports: [
     BrowserModule,
