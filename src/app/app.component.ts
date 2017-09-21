@@ -16,19 +16,4 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.modalService.modal$.subscribe(modals => this.modals = modals);
   }
-
-  public createModal () {
-    const modal = new Modal(
-      {
-        showCancel: true,
-        showVeil: true,
-        text: 'this is a basic modal',
-        title: 'this is a heading',
-        type: 'basic',
-        veilClick: this.modalService.destroyModal.bind(this)
-      }
-    );
-    this.modalService.addModal(modal);
-  }
-
 }
