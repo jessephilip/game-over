@@ -20,7 +20,6 @@ export class MainComponent implements OnInit {
 
   public urlListener(event) {
     this.image.nativeElement.src = event;
-    console.log('event: ', event);
   }
 
 }
