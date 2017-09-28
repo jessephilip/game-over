@@ -1,22 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  HostBinding,
+} from '@angular/core';
+
+// services
 import { ModalService } from '../../shared/services/modal.service';
+
+// types
 import { Modal } from '../../shared/types/modal.model';
 
-/**
- * Creates a modal that pops up on the screen
- *  @param properties: {}
- *    @default none
- *    the properties that define the modal are contained here.
- *    @property showVeil: boolean
- *    @property title: string
- *    @property type: string
- *    @property veilClick: function
- *    @property showCancel: boolean
- *
- * @export
- * @class ModalComponent
- * @implements {OnInit}
- */
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -24,28 +22,28 @@ import { Modal } from '../../shared/types/modal.model';
 })
 export class ModalComponent implements OnInit {
 
-  @Input('modal') modal: Modal;
+  @HostBinding('class') classes;
+  @Input('type') type: string;
+  @ViewChild('contentContainer', { read: ViewContainerRef }) contentContainer;
 
-  public classes: string[] = ['modal'];
+  public properties;
 
-  constructor(private modalService: ModalService) {}
+  constructor(
+    private modalService: ModalService,
+    private componentFactory: ComponentFactoryResolver
+  ) {}
 
   ngOnInit() {
-    if (!this.modal || !this.modal.hasProperties()) {
-      throw new Error ('no properties on this modal');
-    }
-
-    if (this.modal.properties && this.modal.properties.type) {
-      this.classes.push(this.modal.properties.type.toLowerCase());
-    }
-  }
-
-  public displayClasses (): string {
-    return this.classes.join(' ');
+    this.classes = this.properties.type;
+    this.modalService.modal$.subscribe(component => this.loadContent(component));
   }
 
   public cancel (modal: Modal): void {
-    this.modalService.destroyModal(modal);
+    // this.modalService.destroyModal(modal);
   }
 
+  public loadContent (component) {
+    const contentFactory = this.componentFactory.resolveComponentFactory(component.component);
+    this.contentContainer.createComponent(contentFactory, 0, undefined, [component.container.location.nativeElement]);
+  }
 }

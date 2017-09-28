@@ -1,24 +1,33 @@
-<div
-  class="modal"
-  [ngClass]="{ 'veil' : modal.properties.showVeil }"
-  (click)="modal.properties.veilClick(modal)">
-  <main
-    [class]="displayClasses()"
-    appStopPropagation>
+<div [class]="properties.type.toLowerCase()">
+  <section
+    *ngIf="properties.showVeil"
+    class="veil">
+  </section>
+  <section
+    class="modal"
+    [ngClass]="{'disableScroll' : properties.disableScroll }">
+    <header>this is the header</header>
+    <main>
+      <ng-template #contentContainer></ng-template>
+    </main>
+    <footer>this is the footer</footer>
+  </section>
+</div>
+
+<!-- <div
+  [class]="modal.properties.type.toLowerCase()">
+  <section
+    class="veil"
+    (click)="modal.properties.veilClick(modal)">
+  </section>
+  <section
+    class="content">
     <header>
       <h1>{{ modal.properties.title }}</h1>
     </header>
-    <section
-      class="body">
-      <p>{{ modal.properties.text }}</p>
-    </section>
-    <footer>
-      <button
-        *ngIf="modal.properties.showCancel"
-        class="btn cancel"
-        (click)="cancel(modal)">
-        Cancel
-      </button>
-    </footer>
-  </main>
-</div>
+    <main>
+      <ng-content></ng-content>
+    </main>
+    <footer></footer>
+  </section>
+</div> -->

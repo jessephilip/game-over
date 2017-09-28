@@ -16,7 +16,8 @@
       (click)="loggedIn ? logout() : googleLogin()">
       <p>{{ loggedIn ? 'Logout' : 'Login' }}</p>
     </span>
-    <span>
+    <span
+      (click)="loginPopup()">
       <i class="menu fa fa-bars fa-2x"></i>
     </span>
   </aside>

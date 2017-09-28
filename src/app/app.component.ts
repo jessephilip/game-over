@@ -1,6 +1,14 @@
-import {ModalService} from './shared/services/modal.service';
-import {Modal} from './shared/types/modal.model';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactory,
+  ComponentRef,
+} from '@angular/core';
+
+import { ModalService } from './shared/services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +17,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  public modals: Modal[] = [];
+  @ViewChild('container', { read: ViewContainerRef }) container;
 
-  constructor (private modalService: ModalService) {}
+  constructor (
+    private modalService: ModalService,
+    private componentFactory: ComponentFactoryResolver
+  ) {}
 
   ngOnInit(): void {
-    this.modalService.modal$.subscribe(modals => this.modals = modals);
   }
 }
