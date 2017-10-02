@@ -38,4 +38,12 @@ header {
   span.login, span.logout {
     cursor: pointer;
   }
+
+  .fa-bars {
+    transition: 0.2s;
+
+    &.right-shelf-visible {
+      transform: rotate(90deg);
+    }
+  }
 }

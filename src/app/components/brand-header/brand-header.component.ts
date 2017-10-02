@@ -29,6 +29,7 @@ export class BrandHeaderComponent implements OnInit {
   public title = 'Game Over';
   public loggedIn = false;
   public rightShelfRef: ComponentRef<ModalComponent>;
+  public rightShelfVisible = false;
 
   constructor(
     private auth: AuthenticationService,
@@ -49,19 +50,14 @@ export class BrandHeaderComponent implements OnInit {
     });
   }
 
-  public googleLogin () {
-    this.auth.googleLogin();
-  }
-
   public logout () {
     this.auth.logout();
   }
 
   public loginPopup () {
     const rightShelf = this.modalService.findModalByType('right-shelf', true);
-    const rightShelfVisible = rightShelf.length > 0;
 
-    if (rightShelfVisible) {
+    if (this.detectRightShelf()) {
       this.modalService.destroyModal(rightShelf[0].id);
       return;
     }
@@ -79,5 +75,10 @@ export class BrandHeaderComponent implements OnInit {
 
     const modal = new Modal(properties);
     this.modalService.addModal(modal);
+  }
+
+  public detectRightShelf (): boolean {
+    const rightShelf = this.modalService.findModalByType('right-shelf', true);
+    return rightShelf.length > 0;
   }
 }

@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginsComponent implements OnInit {
 
-  constructor() { }
+  public user;
+
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   public loginWithGoogle () {
-    console.log('Logged in with Google');
+    this.auth.googleLogin();
   }
 
   public loginWithFacebook () {
@@ -22,6 +28,10 @@ export class LoginsComponent implements OnInit {
 
   public loginWithUsername () {
     console.log('Logged in with Username');
+  }
+
+  public logout () {
+    this.auth.logout();
   }
 
 }

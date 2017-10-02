@@ -18,7 +18,10 @@
     </span>
     <span
       (click)="loginPopup()">
-      <i class="menu fa fa-bars fa-2x"></i>
+      <i
+        class="menu fa fa-bars fa-2x"
+        [ngClass]="{ 'right-shelf-visible' : detectRightShelf() }">
+      </i>
     </span>
   </aside>
 </header>
