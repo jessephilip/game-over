@@ -2,7 +2,6 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
-  Input,
   OnInit,
   ViewChild,
   ViewContainerRef,
@@ -23,10 +22,15 @@ import { Modal } from '../../shared/types/modal.model';
 export class ModalComponent implements OnInit {
 
   @HostBinding('class') classes;
-  @Input('type') type: string;
   @ViewChild('contentContainer', { read: ViewContainerRef }) contentContainer;
+  @ViewChild('headerContainer', { read: ViewContainerRef }) headerContainer;
+  @ViewChild('footerContainer', { read: ViewContainerRef }) footerContainer;
 
-  public properties;
+  public componentRef: ComponentRef<ModalComponent>;
+  public disableScroll: boolean;
+  public id: number;
+  public showVeil: boolean;
+  public type: string;
 
   constructor(
     private modalService: ModalService,
@@ -34,16 +38,16 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.classes = this.properties.type;
-    this.modalService.modal$.subscribe(component => this.loadContent(component));
+    this.classes = this.type;
+    this.modalService.modals$.subscribe(modals => {
+      modals.forEach(component => this.loadContent(component.properties.content));
+    });
   }
 
-  public cancel (modal: Modal): void {
-    // this.modalService.destroyModal(modal);
-  }
+  public cancel = () => this.modalService.destroyModal(this.id);
 
   public loadContent (component) {
-    const contentFactory = this.componentFactory.resolveComponentFactory(component.component);
-    this.contentContainer.createComponent(contentFactory, 0, undefined, [component.container.location.nativeElement]);
+    const contentFactory = this.componentFactory.resolveComponentFactory(component);
+    this.contentContainer.createComponent(contentFactory, 0, undefined, [this.contentContainer.element.nativeElement]);
   }
 }

@@ -1,16 +1,21 @@
-<div [class]="properties.type.toLowerCase()">
+<div [class]="type.toLowerCase()">
   <section
-    *ngIf="properties.showVeil"
-    class="veil">
+    *ngIf="showVeil"
+    class="veil"
+    (click)="cancel()">
   </section>
   <section
     class="modal"
-    [ngClass]="{'disableScroll' : properties.disableScroll }">
-    <header>this is the header</header>
+    [ngClass]="{'disableScroll' : disableScroll }">
+    <header>
+      <ng-template #headerContainer></ng-template>
+    </header>
     <main>
       <ng-template #contentContainer></ng-template>
     </main>
-    <footer>this is the footer</footer>
+    <footer>
+      <ng-template #footerContainer></ng-template>
+    </footer>
   </section>
 </div>
 
