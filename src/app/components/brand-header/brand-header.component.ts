@@ -6,9 +6,13 @@ import {
   OnInit,
   ViewContainerRef
 } from '@angular/core';
-import { Modal } from '../../shared/types/modal.model';
+
+// components
 import { ModalComponent } from './../modal/modal.component';
 import { LoginsComponent } from '../logins/logins.component';
+
+// types
+import { Modal } from '../../shared/types/modal.model';
 
 // services
 import { AuthenticationService } from '../../shared/services/authentication.service';
@@ -21,13 +25,10 @@ import { ModalService } from './../../shared/services/modal.service';
 })
 export class BrandHeaderComponent implements OnInit {
 
-
   public welcomeMessage = 'Welcome';
   public title = 'Game Over';
   public loggedIn = false;
-
-  // need viewContainerRef = vcRef
-  // need componentFactoryResolver = cfr
+  public rightShelfRef: ComponentRef<ModalComponent>;
 
   constructor(
     private auth: AuthenticationService,
@@ -36,7 +37,7 @@ export class BrandHeaderComponent implements OnInit {
     private viewContainerRef: ViewContainerRef
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.auth.getUser().subscribe(user => {
       if (user && user.uid) {
         this.loggedIn = true;
@@ -56,24 +57,27 @@ export class BrandHeaderComponent implements OnInit {
     this.auth.logout();
   }
 
-  public loginPopup (event) {
-    // create component
+  public loginPopup () {
+    const rightShelf = this.modalService.findModalByType('right-shelf', true);
+    const rightShelfVisible = rightShelf.length > 0;
+
+    if (rightShelfVisible) {
+      this.modalService.destroyModal(rightShelf[0].id);
+      return;
+    }
+
     const modalFactory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-    // create reference to component
-    const modalRef = this.viewContainerRef.createComponent(modalFactory);
-    // establish properties for modal
+    this.rightShelfRef = this.viewContainerRef.createComponent(modalFactory);
+
     const properties = {
+      componentRef: this.rightShelfRef,
+      content: LoginsComponent,
       disableScroll: true,
       showVeil: true,
-      type: 'right-shelf',
+      type: 'right-shelf'
     };
 
-    // set properties to modal instance
-    modalRef.instance.properties = properties;
-    // properties.type = 'basic';
-
-
-    // send
-    this.modalService.setModal({ component: LoginsComponent, container: modalRef });
+    const modal = new Modal(properties);
+    this.modalService.addModal(modal);
   }
 }
