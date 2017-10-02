@@ -16,8 +16,12 @@
       (click)="loggedIn ? logout() : googleLogin()">
       <p>{{ loggedIn ? 'Logout' : 'Login' }}</p>
     </span>
-    <span>
-      <i class="menu fa fa-bars fa-2x"></i>
+    <span
+      (click)="loginPopup()">
+      <i
+        class="menu fa fa-bars fa-2x"
+        [ngClass]="{ 'right-shelf-visible' : detectRightShelf() }">
+      </i>
     </span>
   </aside>
 </header>

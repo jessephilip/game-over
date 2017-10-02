@@ -1,0 +1,32 @@
+div {
+  overflow-y: hidden;
+}
+ul {
+  list-style: none;
+
+  li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.fa {
+  height: 30px;
+  font-size: 2em;
+  margin: 10px;
+  text-align: center;
+  width: 30px;
+}
+
+.fa-google {
+  color: #db3236;
+}
+
+.fa-facebook {
+  color: #3B5998;
+}
+
+.fa-user {
+  color: rebeccapurple;
+}

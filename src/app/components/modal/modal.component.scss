@@ -1,54 +1,41 @@
 @import '../../../variables.scss';
 
-div.modal {
-  align-items: center;
+// general styling for all modals
+div {
   display: flex;
+  flex-direction: row;
   height: 100%;
-  justify-content: center;
   width: 100%;
 
-  &.veil {
-    background-color: rgba(0,0,0,0.8);
+  section.veil {
+    background-color: rgba(0,0,0,0.7);
+    height: 100%;
+  }
+
+  section.modal {
+    &.disableScroll {
+      overflow-y: hidden;
+    }
+
+    header {}
+    main {}
+    footer {}
   }
 }
 
-main.modal {
-  background-color: white;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
+// type specific styling
+div.right-shelf {
 
-  &.basic {
-    width: 50%;
-    height: 50%;
+  section.veil {
+    width: 60%
+  }
 
-    header {
-      align-items: center;
-      display: flex;
-      padding: 10px;
-    }
-
-    section {
-      align-items: flex-start;
+  section {
+    header {}
+    main {
       display: flex;
       height: 100%;
-      padding: 10px;
     }
-
-    footer {
-      align-items: center;
-      border-top: 1px solid black;
-      display: flex;
-      height:10%;
-      justify-content: flex-end;
-      padding: 10px;
-
-      button {
-        @include button(white, $failColor);
-        box-shadow: $basicBoxShadow;
-      }
-    }
+    footer {}
   }
 }

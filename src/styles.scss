@@ -10,10 +10,11 @@ div, span, header, footer, main, section, article, aside, button {
 body {
   height: 100vh;
   overflow-y: hidden;
+  width: 100vw;
 }
 
 // app-today, app-schedule, app-calendar, app-goals, app-profile, app-food, app-history,
-app-main, app-not-found, app-modal {
+app-main, app-not-found {
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
@@ -21,10 +22,8 @@ app-main, app-not-found, app-modal {
 }
 
 app-modal {
-  display: flex;
-  left: 0;
   height: 100%;
+  overflow-x: hidden;
   position: absolute;
-  top: 0;
   width: 100%;
 }

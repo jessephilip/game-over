@@ -31,6 +31,7 @@ import { BrandHeaderComponent } from './components/brand-header/brand-header.com
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
+import { LoginsComponent } from './components/logins/logins.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,12 @@ import { StopPropagationDirective } from './shared/directives/stop-propagation.d
     BrandHeaderComponent,
     UploadButtonComponent,
     ModalComponent,
-    StopPropagationDirective
+    StopPropagationDirective,
+    LoginsComponent
+  ],
+  entryComponents: [
+    LoginsComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
