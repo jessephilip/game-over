@@ -27,3 +27,18 @@ app-modal {
   position: absolute;
   width: 100%;
 }
+
+app-veil {
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+}
+
+app-shelf {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}

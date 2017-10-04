@@ -5,7 +5,7 @@ import { Modal } from 'app/shared/types/modal.model';
 
 
 interface ModalProperties {
-  componentRef: ComponentRef<ModalComponent>;
+  componentRef: ComponentRef<any>;
   content?: any;
   footer?: any;
   header?: any;
