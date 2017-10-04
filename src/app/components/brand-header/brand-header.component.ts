@@ -9,6 +9,7 @@ import {
 
 // components
 import { ModalComponent } from './../modal/modal.component';
+import { ShelfComponent } from './../shelf/shelf.component';
 import { LoginsComponent } from '../logins/logins.component';
 
 // types
@@ -28,7 +29,7 @@ export class BrandHeaderComponent implements OnInit {
   public welcomeMessage = 'Welcome';
   public title = 'Game Over';
   public loggedIn = false;
-  public rightShelfRef: ComponentRef<ModalComponent>;
+  public rightShelfRef: ComponentRef<any>;
   public rightShelfVisible = false;
 
   constructor(
@@ -62,7 +63,7 @@ export class BrandHeaderComponent implements OnInit {
       return;
     }
 
-    const modalFactory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+    const modalFactory = this.componentFactoryResolver.resolveComponentFactory(ShelfComponent);
     this.rightShelfRef = this.viewContainerRef.createComponent(modalFactory);
 
     const properties = {
@@ -72,9 +73,7 @@ export class BrandHeaderComponent implements OnInit {
       showVeil: true,
       type: 'right-shelf'
     };
-
-    const modal = new Modal(properties);
-    this.modalService.addModal(modal);
+    this.modalService.addModal(new Modal(properties));
   }
 
   public detectRightShelf (): boolean {
