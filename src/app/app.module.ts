@@ -1,5 +1,6 @@
 // core Angular Modules
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -32,6 +33,8 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
 import { ModalComponent } from './components/modal/modal.component';
 import { StopPropagationDirective } from './shared/directives/stop-propagation.directive';
 import { LoginsComponent } from './components/logins/logins.component';
+import { VeilComponent } from './components/veil/veil.component';
+import { ShelfComponent } from './components/shelf/shelf.component';
 
 @NgModule({
   declarations: [
@@ -42,14 +45,18 @@ import { LoginsComponent } from './components/logins/logins.component';
     UploadButtonComponent,
     ModalComponent,
     StopPropagationDirective,
-    LoginsComponent
+    LoginsComponent,
+    VeilComponent,
+    ShelfComponent
   ],
   entryComponents: [
     LoginsComponent,
-    ModalComponent
+    ModalComponent,
+    ShelfComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
