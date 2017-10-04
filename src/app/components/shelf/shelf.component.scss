@@ -1,0 +1,65 @@
+div.shelfContainer {
+
+  section.shelf {
+    animation-fill-mode: forwards;
+    background-color: white;
+  }
+
+  // general shelf container scss
+
+  // for top shelf
+  &.top-shelf {
+
+    section.shelf {
+      height: 40%;
+      position: absolute;
+      width: 100%;
+    }
+
+  }
+
+  &.right-shelf {
+
+    section.shelf {
+      animation: fromRight 0.2s ease-in;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      width: 40%;
+    }
+
+  }
+
+  &.bottom-shelf {
+
+    section.shelf {
+      bottom: 0;
+      height: 40%;
+      position: absolute;
+      width: 100%;
+    }
+
+  }
+
+  &.left-shelf {
+
+    section.shelf {
+      animation: fromLeft 0.2s ease-in;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      width: 40%;
+    }
+  }
+
+}
+
+@keyframes fromLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0%); }
+}
+
+@keyframes fromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0%); }
+}

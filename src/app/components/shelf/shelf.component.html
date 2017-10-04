@@ -1,0 +1,22 @@
+<div
+  class="shelfContainer"
+  [ngClass]="type.toLowerCase()">
+  <app-veil
+    *ngIf="showVeil"
+    [ngClass]="convertClasses(veilClasses)"
+    (click)="cancel()">
+  </app-veil>
+  <section
+    class="shelf"
+    [ngClass]="convertClasses(modalClasses)">
+    <header>
+      <ng-template #headerContainer></ng-template>
+    </header>
+    <main>
+      <ng-template #contentContainer></ng-template>
+    </main>
+    <footer>
+      <ng-template #footerContainer></ng-template>
+    </footer>
+  </section>
+</div>
