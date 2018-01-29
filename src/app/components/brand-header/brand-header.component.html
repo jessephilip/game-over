@@ -8,13 +8,10 @@
     </span>
   </aside>
   <section>
-    {{ welcomeMessage }}
   </section>
   <aside>
     <span
-      [class]="loggedIn ? 'login' : 'logout'"
-      (click)="loggedIn ? logout() : googleLogin()">
-      <p>{{ loggedIn ? 'Logout' : 'Login' }}</p>
+      [class]="loggedIn ? 'login' : 'logout'">
     </span>
     <span
       (click)="loginPopup()">

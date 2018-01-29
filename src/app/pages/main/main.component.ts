@@ -1,3 +1,4 @@
+import { ModalService } from 'app/shared/services/modal.service';
 import {
   Component,
   ElementRef,
@@ -14,12 +15,16 @@ export class MainComponent implements OnInit {
 
   @ViewChild('image') image: ElementRef;
 
-  constructor() {}
+  constructor(private modalService: ModalService) {}
 
   ngOnInit() {}
 
   public urlListener(event) {
     this.image.nativeElement.src = event;
+  }
+
+  public createExercise () {
+
   }
 
 }

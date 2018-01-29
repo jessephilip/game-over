@@ -9,14 +9,14 @@ import {
 
 @Component({
   animations: [
-    trigger('fadeOut', [
-      state('in', style({transform: 'translateX(0)'})),
-      transition('void => *', [
-        style({transform: 'translateX(100%)'}),
-        animate(200)
+    trigger('fade', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('void => visible', [
+        animate(100)
       ]),
-      transition('* => void', [
-        animate(200, style({transform: 'translateX(100%)'}))
+      transition('visible => void', [
+        animate(100)
       ])
     ])
   ],

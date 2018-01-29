@@ -22,10 +22,15 @@ app-main, app-not-found {
 }
 
 app-modal {
-  height: 100%;
   overflow-x: hidden;
   position: absolute;
-  width: 100%;
+
+  &.full-center {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 }
 
 app-veil {
